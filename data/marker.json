@@ -1,0 +1,89 @@
+[
+  {
+    "id": 1,
+    "place_name": "Golf Warehouse Petone",
+    "lat": -41.231709,
+    "lng": 174.905066,
+    "description": "Driving range, come and test out your drives or learn how to smash a gold ball",
+    "cost": ["50 balls $9.00",
+             "100 balls $15.00",
+             "200 balls $28.00"]
+  },
+  {
+    "id": 2,
+    "place_name": "Reading Cinemas - Courtney",
+    "lat": -41.292823,
+    "lng": 174.779986,
+    "description": "Come catch the newest screening from Hollywood in your own backyard, Reading Courtney",
+    "cost": ["General - $10",
+             "Gold Lounge - $17.50"]
+  },
+  {
+    "id": 3,
+    "place_name": "The Lanes - Bowling",
+    "lat": -41.292056,
+    "lng": 174.781240,
+    "description": "Entertainment for the whole family, work collegues from bowling allies to pool tables, with sides to bite on while you play",
+    "cost": ["1 game from $10",
+             "2 games from $15"]
+  },
+  {
+    "id": 4,
+    "place_name": "Little Penang - Dixon St",
+    "lat": -41.291804,
+    "lng": 174.777091,
+    "description": "Enjoy the great taste of Malaysia with a twist of South Indian flare",
+    "cost": ["Meals from $12"]
+  },
+  {
+    "id": 5,
+    "place_name": "Plum Cafe",
+    "lat": -41.292407,
+    "lng": 174.776393,
+    "description": "Feeling like Breakfast, lunch or want to have both and call it brunch",
+    "cost": ["Meals from $12"]
+  },
+  {
+    "id": 6,
+    "place_name": "Area51 - Wellington",
+    "lat": -41.291737,
+    "lng": 174.776849,
+    "description": "Shop for clothing from street fashion brands from New Zealand, Austrailia and the from around the world",
+    "cost": ["Varies with item"]
+  },
+  {
+    "id": 7,
+    "place_name": "Freybery Pool & Fitness Centre",
+    "lat": -41.290862,
+    "lng": 174.789593,
+    "description": "Enjoy a relaxing gym session followed by a nice swim in our heated swimming pool",
+    "cost": ["Adults - $6",
+             "Child - $3.70"]
+  },
+  {
+    "id": 8,
+    "place_name": "Indoor Grand Prix - Kaiwharawhara",
+    "lat": -41.259859,
+    "lng": 174.790583,
+    "description": "Go-karting for family events or work do's, we also have laser force and mini-golf to add to your experience",
+    "cost": ["$15 - 10minutes",
+             "$20 - 15minutes",
+             "$25 - 20minutes"]
+  },
+  {
+    "id": 9,
+    "place_name": "Laser Force Wellington",
+    "lat": -41.297154,
+    "lng": 174.780255,
+    "description": "Gaming Arcade for all walks of life, with laser force as the main attraction",
+    "cost": ["Prices vary with attraction"]
+  },
+  {
+    "id": 10,
+    "place_name": "I LOVE UGLY",
+    "lat": -41.285818,
+    "lng": 174.776105,
+    "description": "New Zealands leading street fashion wear for Men",
+    "cost": ["Cost varies with item"]
+  }
+]
