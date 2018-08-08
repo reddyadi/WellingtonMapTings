@@ -1,6 +1,8 @@
 google.maps.event.addDomListener(window, 'load', initmap);
 // var map, infobox, allMarkers = [];
   var map;
+  var infobox;
+  var allMarkers = [];
 
   function initmap() {
     var mapOptions = {
@@ -62,6 +64,8 @@ google.maps.event.addDomListener(window, 'load', initmap);
           });
 
         }
+        markerClickEvent(marker);
+        allMarkers.push(marker);
       },
       error: function(error){
         console.log("Something went wrong");
@@ -77,7 +81,40 @@ google.maps.event.addDomListener(window, 'load', initmap);
     infobox = new google.maps.InfoWindow();
     map.panTo(marker.position);
     google.maps.event.addListener(marker, 'click', function(){
-      
-    })
-
+      infobox.setContent(
+        "div class='infobox'>"+
+          '<strong>'+marker.title+'</strong><br>'+
+          marker.description+'<br>'+
+        '</div>');
+      infobox.open(map, marker);
+    });
   }
+
+  function moveMap(){
+    var latlng = new google.maps.LatLng(-41.2959299, 174.772154);
+    map.panTo(latlng);
+    map.setZoom(17);
+  }
+
+  $(document).on('click', '.place', function(){
+    if(infobox){
+      infobox.close();
+    }
+    var id = $(this).data('id');
+    $('.panel').slideUp();
+    $(this).find('.panel').slideDown()
+    for (var i = 0; i < allMarkers.length; i++) {
+      if(allMarkers[i].markerID == id){
+        map.panTo(allMarkers[i].position);
+        map.setZoom(17);
+        infobox = new google.maps.InfoWindow();
+        infobox.setContent(
+          '<div class="infobox">'+
+            '<strong>'+allMarkers[i].title+'</strong><br>'+
+            allMarkers[i].description+'<br>'+
+          '</div>');
+        infobox.open(map, allMarkers[i]);
+        break;
+      }
+    }
+  });
