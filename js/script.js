@@ -1,10 +1,13 @@
 google.maps.event.addDomListener(window, 'load', initmap);
-// var map, infobox, allMarkers = [];
+
   var map;
   var infobox;
   var allMarkers = [];
+  var directionsService = new google.maps.DirectionsService();
+  var directionDisplay = new google.maps.DirectionsRenderer();
 
   function initmap() {
+
     var mapOptions = {
       center :{
         lat: -41.279214,
@@ -28,6 +31,8 @@ google.maps.event.addDomListener(window, 'load', initmap);
       }
     }
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    directionDisplay.setMap(map);
+    directionDisplay.setPanel(document.getElementById('directions'));
     addAllMarkers();
   }
 
@@ -37,7 +42,7 @@ google.maps.event.addDomListener(window, 'load', initmap);
       dataType: 'json',
       type: 'GET',
       success: function(markers){
-        console.log(markers);
+        // console.log(markers);
         for (var i = 0; i < markers.length; i++) {
           $("#place").append(
             "<div class='place' data-id='"+markers[i].id+"'>"+
@@ -59,13 +64,16 @@ google.maps.event.addDomListener(window, 'load', initmap);
             title: markers[i].place_name,
             markerID: markers[i].id,
             description: markers[i].description,
+            lat: markers[i].lat,
+            lng: markers[i].lng,
             map: map,
             animation: google.maps.Animation.DROP
           });
-
+          allMarkers.push(marker);
+          // console.log(allMarkers);
         }
         markerClickEvent(marker);
-        allMarkers.push(marker);
+
       },
       error: function(error){
         console.log("Something went wrong");
@@ -96,11 +104,29 @@ google.maps.event.addDomListener(window, 'load', initmap);
     map.setZoom(17);
   }
 
+  function calcRoute(x, y){
+    start = new google.maps.LatLng(-41.2865, 174.7762);
+    end = new google.maps.LatLng(x, y);
+    var request = {
+      origin: start,
+      destination: end,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function(response,status){
+    if(status == google.maps.DirectionsStatus.OK){
+      directionDisplay.setDirections(response);
+      var route = response.routes[0];
+      }
+    })
+  }
+
   $(document).on('click', '.place', function(){
     if(infobox){
       infobox.close();
     }
     var id = $(this).data('id');
+    // console.log(id);
+    // console.log(allMarkers);
     $('.panel').slideUp();
     $(this).find('.panel').slideDown()
     for (var i = 0; i < allMarkers.length; i++) {
@@ -114,6 +140,7 @@ google.maps.event.addDomListener(window, 'load', initmap);
             allMarkers[i].description+'<br>'+
           '</div>');
         infobox.open(map, allMarkers[i]);
+        calcRoute(allMarkers[i].lat, allMarkers[i].lng);
         break;
       }
     }
